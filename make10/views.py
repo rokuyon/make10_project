@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from data import get_numbers
+from .data import get_numbers
 
 # Create your views here.
 def index(request):

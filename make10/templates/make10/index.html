@@ -1,1 +1,4 @@
-<input type="button" value="スタート"　href="{% url 'game' %}">
+{% extends 'todo/base.html' %}
+{% block content %}
+<a href="{% url 'game' %}"><button type="button">スタート</button></a>
+{% endblock %}
