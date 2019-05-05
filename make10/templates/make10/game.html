@@ -1,0 +1,23 @@
+{% extends 'make10/base.html' %}
+{% block content %}
+    <div>
+        {% for number in numbers %}
+            getNumber({{ number }});
+            <input type="button" value="{{ number }}" onclick="click(this)">
+        {% endfor %}
+        で１０を作れ
+    </div>
+    
+    <div id="formula"></div>
+
+    <div>
+        <input type="button" value="+" onclick="click(this)">
+        <input type="button" value="-" onclick="click(this)">
+        <input type="button" value="×" onclick="click(this)">
+        <input type="button" value="÷" onclick="click(this)">
+        <input type="button" value="(" onclick="click(this)">
+        <input type="button" value=")" onclick="click(this)">
+        <input type="button" value="削除" onclick="click(this)">
+        <input type="button" value="決定" onclick="click(this)">
+    </div>
+{% end content %}
