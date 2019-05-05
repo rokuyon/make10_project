@@ -1,6 +1,6 @@
 {% extends 'make10/base.html' %}
 {% block content %}
-    <div>
+    <div id="figure">
         {% for number in numbers %}
             <input type="button" value="{{ number }}" onclick="clickFigure(this)">
         {% endfor %}
@@ -10,7 +10,7 @@
     <form action="{% url 'judge' %}" method="POST">
         {% csrf_token %}
         <input type="text" id="formula" name="formula">
-        <input type="submit" value="決定">
+        <input type="submit" id="decide" disabled="true" value="決定">
     </form>
 
     <div>

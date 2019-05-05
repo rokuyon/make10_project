@@ -6,13 +6,28 @@ var numbers = [];
 var text;
 
 function clickFigure(e){
+    // 直前に入力されたものが数値でない時
     if(!(figures.includes(formula[formula.length-1]))){
-        formula.push(e.value)
+        // 既に使った数値かどうかチェック
+        for(var i=0; i<numbers.length; i++){
+            if(e.value == numbers[i]){
+                formula.push(e.value);  // 数値を数式に追加
+                numbers.splice(i, 1);   // 使える数値を減らす
+
+                // 数値をすべて使ったかチェック
+                if(numbers.length == 0){
+                    $("#decide").get(0).disabled = false;
+                }
+                break;
+            }
+        }
     }
+    console.log(numbers);
     document.getElementById("formula").value = formulaToString();
 }
 
 function clickOperator(e){
+    // 直前に入力されたものが演算子でない時
     if(!operator.includes(formula[formula.length-1])){
         formula.push(e.value);
     }
@@ -25,8 +40,24 @@ function clickParenthesis(e){
 }
 
 function popFormula(){
-    formula.pop();
+    var rm = formula.pop(); // 数式から末尾の文字列を削除
+
+    // 数式から削除したものが数値であった場合
+    if(figures.includes(rm)){
+        numbers.push(rm);   // 使用できる数値として復活させる
+        $("#decide").get(0).disabled = true;
+    }
+
+    console.log(numbers);
     document.getElementById("formula").value = formulaToString();
+}
+
+function checkUsedNumber(){
+    // 数値をすべて使ったかチェック
+    if(numbers.length > 0){
+        alert("数字は全部使ってね");
+        return;
+    }
 }
 
 function postFormula(){
@@ -58,3 +89,13 @@ function formulaToString(){
     text = formula.join(",");
     return text.replace(/,/g, "");
 }
+
+$(function(){
+    var figure_list = document.getElementById("figure").children;
+
+    for(var i=0; i<figure_list.length; i++){
+        numbers.push(figure_list.item(i).value);
+    }
+
+    console.log(numbers);
+});
