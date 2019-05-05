@@ -12,7 +12,7 @@ function getNumber(number){
 function buttonClick(e){
     //入力が演算子
     if(operator.includes(e.value)){
-        if(!operator.includes(formula[formula.length])){
+        if(!operator.includes(formula[formula.length-1])){
             formula.push(e.value);
         }
     }
@@ -29,7 +29,7 @@ function buttonClick(e){
     //入力が数字
     else{
         //数式の最後の文字が数字でない時
-        if(!(figures.includes(formula[formula.length]))){
+        if(!(figures.includes(formula[formula.length-1]))){
             formula.push(e.value)
         }
     }
