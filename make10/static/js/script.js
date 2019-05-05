@@ -3,12 +3,21 @@ var operator = ["+", "-", "×", "÷"];
 var parentheses = ["(", ")"];
 var figures = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 var numbers = [];
+//var used_numbers = [];
 var text;
 
 function clickFigure(e){
     if(!(figures.includes(formula[formula.length-1]))){
-        formula.push(e.value)
+        for(var i=0; i<numbers.length; i++){
+            if(e.value == numbers[i]){
+                formula.push(e.value);
+                //used_numbers.push(e.value);
+                numbers.splice(i, 1);
+                break;
+            }
+        }
     }
+    console.log(numbers);
     document.getElementById("formula").value = formulaToString();
 }
 
@@ -25,7 +34,13 @@ function clickParenthesis(e){
 }
 
 function popFormula(){
-    formula.pop();
+    var rm = formula.pop();
+
+    if(figures.includes(rm)){
+        numbers.push(rm);
+    }
+
+    console.log(numbers);
     document.getElementById("formula").value = formulaToString();
 }
 
@@ -58,3 +73,13 @@ function formulaToString(){
     text = formula.join(",");
     return text.replace(/,/g, "");
 }
+
+$(function(){
+    var figure_list = document.getElementById("figure").children;
+
+    for(var i=0; i<figure_list.length; i++){
+        numbers.push(figure_list.item(i).value);
+    }
+
+    console.log(numbers);
+});

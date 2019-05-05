@@ -1,6 +1,6 @@
 {% extends 'make10/base.html' %}
 {% block content %}
-    <div>
+    <div id="figure">
         {% for number in numbers %}
             <input type="button" value="{{ number }}" onclick="clickFigure(this)">
         {% endfor %}
