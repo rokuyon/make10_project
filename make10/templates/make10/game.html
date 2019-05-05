@@ -2,7 +2,7 @@
 {% block content %}
     <div>
         {% for number in numbers %}
-            <input type="button" value="{{ number }}" onclick="buttonClick(this)">
+            <input type="button" value="{{ number }}" onclick="clickFigure(this)">
         {% endfor %}
         で１０を作れ!
     </div>
@@ -10,13 +10,13 @@
     <div id="formula"></div>
 
     <div>
-        <input type="button" value="+" onclick="buttonClick(this)">
-        <input type="button" value="-" onclick="buttonClick(this)">
-        <input type="button" value="×" onclick="buttonClick(this)">
-        <input type="button" value="÷" onclick="buttonClick(this)">
-        <input type="button" value="(" onclick="buttonClick(this)">
-        <input type="button" value=")" onclick="buttonClick(this)">
-        <input type="button" value="削除" onclick="buttonClick(this)">
-        <input type="button" value="決定" onclick="buttonClick(this)">
+        <input type="button" value="+" onclick="clickOperator(this)">
+        <input type="button" value="-" onclick="clickOperator(this)">
+        <input type="button" value="×" onclick="clickOperator(this)">
+        <input type="button" value="÷" onclick="clickOperator(this)">
+        <input type="button" value="(" onclick="clickParenthesis(this)">
+        <input type="button" value=")" onclick="clickParenthesis(this)">
+        <input type="button" value="削除" onclick="popFormula()">
+        <input type="button" value="決定" onclick="postFormula()">
     </div>
 {% endblock %}
