@@ -13,6 +13,11 @@ function clickFigure(e){
             if(e.value == numbers[i]){
                 formula.push(e.value);  // 数値を数式に追加
                 numbers.splice(i, 1);   // 使える数値を減らす
+
+                // 数値をすべて使ったかチェック
+                if(numbers.length == 0){
+                    $("#decide").get(0).disabled = false;
+                }
                 break;
             }
         }
@@ -40,6 +45,7 @@ function popFormula(){
     // 数式から削除したものが数値であった場合
     if(figures.includes(rm)){
         numbers.push(rm);   // 使用できる数値として復活させる
+        $("#decide").get(0).disabled = true;
     }
 
     console.log(numbers);
