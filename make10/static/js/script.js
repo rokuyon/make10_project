@@ -9,24 +9,24 @@ function clickFigure(e){
     if(!(figures.includes(formula[formula.length-1]))){
         formula.push(e.value)
     }
-    document.getElementById("formula").innerHTML = formulaToString();
+    document.getElementById("formula").value = formulaToString();
 }
 
 function clickOperator(e){
     if(!operator.includes(formula[formula.length-1])){
         formula.push(e.value);
     }
-    document.getElementById("formula").innerHTML = formulaToString();
+    document.getElementById("formula").value = formulaToString();
 }
 
 function clickParenthesis(e){
     formula.push(e.value);
-    document.getElementById("formula").innerHTML = formulaToString();
+    document.getElementById("formula").value = formulaToString();
 }
 
 function popFormula(){
     formula.pop();
-    document.getElementById("formula").innerHTML = formulaToString();
+    document.getElementById("formula").value = formulaToString();
 }
 
 function postFormula(){
@@ -37,11 +37,12 @@ function postFormula(){
     };
 
     $.ajax({
-        url: '',
+        url: 'judge',
         type: 'POST',
         dataType: 'json',
-        data: formula_json,
+        data: {'formula': formula_json},
         timeout: 5000,
+
       })
       .done(function(data) {
           console.log("success");

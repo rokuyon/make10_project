@@ -7,7 +7,11 @@
         で１０を作れ!
     </div>
     
-    <div id="formula"></div>
+    <form action="{% url 'judge' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" id="formula" name="formula">
+        <input type="submit" value="決定">
+    </form>
 
     <div>
         <input type="button" value="+" onclick="clickOperator(this)">
@@ -17,6 +21,9 @@
         <input type="button" value="(" onclick="clickParenthesis(this)">
         <input type="button" value=")" onclick="clickParenthesis(this)">
         <input type="button" value="削除" onclick="popFormula()">
-        <input type="button" value="決定" onclick="postFormula()">
+    </div>
+
+    <div>
+        {{ message }}
     </div>
 {% endblock %}

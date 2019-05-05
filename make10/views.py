@@ -1,5 +1,9 @@
+import json
 from django.shortcuts import render
-
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 from .data import get_numbers
 
 # Create your views here.
@@ -11,10 +15,13 @@ def game(request):
     context = {'numbers': numbers}
     return render(request, 'make10/game.html', context)
 
+@csrf_exempt
 def judge(request):
-    formula = request.POST.get('formula')
+    formula = request.POST['formula']
     formula = formula.replace('×', '*')
     formula = formula.replace('÷', '/')
+
+
 
     try:
         eval(formula)
@@ -34,5 +41,7 @@ def judge(request):
     else:
         message = "不正解です。"
 
-    context = {'message', message}
-    return render(request, 'make10/game.html', context)
+    print()
+    print(message)
+    print()
+    return HttpResponseRedirect(reverse('game'))
