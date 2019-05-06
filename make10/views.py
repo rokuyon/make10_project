@@ -6,13 +6,32 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from .data import get_numbers
 
-# Create your views here.
 def index(request):
+    request.session['correct'] = True
+    request.session['correct_count'] = 0
+    request.session['numbers'] = "0000"
     return render(request, 'make10/index.html')
 
 def game(request):
-    numbers = get_numbers()
-    context = {'numbers': numbers}
+
+    correct = request.session['correct']
+    correct_count = request.session['correct_count']
+
+    if (correct_count == 0 and correct):
+        message = ""
+        numbers = get_numbers()
+    else:
+        if correct:
+            message = "正解です"
+            numbers = get_numbers()
+            request.session['correct'] = False
+        else:
+            message = "不正解です"
+            numbers = request.session['numbers']
+            request.session['correct'] = False
+
+    request.session['numbers'] = numbers
+    context = {'numbers': numbers, 'message': message, 'correct_count': correct_count}
     return render(request, 'make10/game.html', context)
 
 @csrf_exempt
@@ -20,8 +39,6 @@ def judge(request):
     formula = request.POST['formula']
     formula = formula.replace('×', '*')
     formula = formula.replace('÷', '/')
-
-
 
     try:
         eval(formula)
@@ -37,11 +54,9 @@ def judge(request):
     result = eval(formula)
 
     if result == 10:
-        message = "正解!"
+        request.session['correct'] = True
+        request.session['correct_count'] += 1
     else:
-        message = "不正解です。"
+        request.session['correct'] = False
 
-    print()
-    print(message)
-    print()
     return HttpResponseRedirect(reverse('game'))

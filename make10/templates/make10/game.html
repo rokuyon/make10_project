@@ -1,10 +1,10 @@
 {% extends 'make10/base.html' %}
 {% block content %}
     <div id="figure">
+        問題: 
         {% for number in numbers %}
             <input type="button" value="{{ number }}" onclick="clickFigure(this)">
         {% endfor %}
-        で１０を作れ!
     </div>
     
     <form action="{% url 'judge' %}" method="POST">
@@ -25,5 +25,8 @@
 
     <div>
         {{ message }}
+    </div>
+    <div>
+        現在{{ correct_count }}問正解
     </div>
 {% endblock %}
