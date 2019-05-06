@@ -1,27 +1,26 @@
 {% extends 'make10/base.html' %}
 {% block content %}
     <div id="figure">
-        問題: 
         {% for number in numbers %}
-            <input type="button" value="{{ number }}" onclick="clickFigure(this)">
+            <input class="btn btn-secondary game-button" type="button" value="{{ number }}" onclick="clickFigure(this)">
         {% endfor %}
+    </div>
+    <div>
+        <input class="btn btn-secondary game-button" type="button" value="+" onclick="clickOperator(this)">
+        <input class="btn btn-secondary game-button" type="button" value="-" onclick="clickOperator(this)">
+        <input class="btn btn-secondary game-button" type="button" value="×" onclick="clickOperator(this)">
+        <input class="btn btn-secondary game-button" type="button" value="÷" onclick="clickOperator(this)">
+        <input class="btn btn-secondary game-button" type="button" value="(" onclick="clickParenthesis(this)">
+        <input class="btn btn-secondary game-button" type="button" value=")" onclick="clickParenthesis(this)">
+        <input class="btn btn-danger game-button" type="button" value="削除" onclick="popFormula()">
     </div>
     
     <form action="{% url 'judge' %}" method="POST">
         {% csrf_token %}
         <input type="text" id="formula" name="formula">
-        <input type="submit" id="decide" disabled="true" value="決定">
+        <input class="btn btn-primary" type="submit" id="decide" disabled="true" value="決定">
     </form>
 
-    <div>
-        <input type="button" value="+" onclick="clickOperator(this)">
-        <input type="button" value="-" onclick="clickOperator(this)">
-        <input type="button" value="×" onclick="clickOperator(this)">
-        <input type="button" value="÷" onclick="clickOperator(this)">
-        <input type="button" value="(" onclick="clickParenthesis(this)">
-        <input type="button" value=")" onclick="clickParenthesis(this)">
-        <input type="button" value="削除" onclick="popFormula()">
-    </div>
 
     <div>
         {{ message }}
