@@ -1,0 +1,26 @@
+{% extends 'make10/base.html' %}
+{% block content %}
+
+<div class="container">
+    <h2>ランキング</h2>
+    <table class="table">
+            <thead>
+                <tr>
+                    <th>順位</th>
+                    <th>名前</th>
+                    <th>クリアタイム</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in all_records %}
+                <tr>
+                    <th>{{ forloop.counter }}</th>
+                    <td>{{ record.name }}</td>
+                    <td>{{ record.time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+</div>
+
+{% endblock %}
