@@ -1,3 +1,9 @@
+/* Game Button */
 .game-button {
     margin: 10px;
+}
+
+.stop-watch {
+    outline: 0;
+    border: 0px;
 }

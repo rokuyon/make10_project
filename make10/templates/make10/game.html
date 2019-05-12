@@ -1,9 +1,19 @@
 {% extends 'make10/base.html' %}
 {% block content %}
+    <script type="text/javascript">
+        window.onload = initGame
+    </script>
+    <br>
+    <form name="myForm">
+        経過時間:
+        <input class="stop-watch" type="text" size="28" name="myFormTime" id="timer">
+    </form>
+    <br>
     <div id="figure">
-        {% for number in numbers %}
-            <input class="btn btn-secondary game-button" type="button" value="{{ number }}" onclick="clickFigure(this)">
-        {% endfor %}
+        <input class="btn btn-secondary game-button" type="button" onclick="clickFigure(this)">
+        <input class="btn btn-secondary game-button" type="button" onclick="clickFigure(this)">
+        <input class="btn btn-secondary game-button" type="button" onclick="clickFigure(this)">
+        <input class="btn btn-secondary game-button" type="button" onclick="clickFigure(this)">
     </div>
     <div>
         <input class="btn btn-secondary game-button" type="button" value="+" onclick="clickOperator(this)">
@@ -15,17 +25,19 @@
         <input class="btn btn-danger game-button" type="button" value="削除" onclick="popFormula()">
     </div>
     
-    <form action="{% url 'judge' %}" method="POST">
+    <input type="text" id="formula" name="formula">
+    <input class="btn btn-primary" type="button" id="answer" disabled="true" value="決定" onClick="judge()">
+
+
+    <div id="message">
+    </div>
+    <div>
+        現在<span id="correctCount">0</span>問正解
+    </div>
+
+    <form action="{% url 'clear' %}" method="POST" id="clearTimeForm">
         {% csrf_token %}
-        <input type="text" id="formula" name="formula">
-        <input class="btn btn-primary" type="submit" id="decide" disabled="true" value="決定">
+        <input type="hidden" id="clearTimeInput" name="clearTime">
     </form>
 
-
-    <div>
-        {{ message }}
-    </div>
-    <div>
-        現在{{ correct_count }}問正解
-    </div>
 {% endblock %}
