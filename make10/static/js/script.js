@@ -71,13 +71,9 @@ function initGame() {
 function myDisp(){	
     myStop = new Date();
     myTime = myStop.getTime() - myStart.getTime();	// 通算ミリ秒計算
-    myH = Math.floor(myTime/(60*60*1000));	// '時間'取得
-    myTime = myTime-(myH*60*60*1000);	
-    myM = Math.floor(myTime/(60*1000));	// '分'取得
-    myTime = myTime-(myM*60*1000);	
     myS = Math.floor(myTime/1000);	// '秒'取得
     myMS = myTime%1000;	// 'ミリ秒'取得
-    document.myForm.myFormTime.value = myH+":"+myM+":"+myS+":"+myMS;	
+    document.myForm.myFormTime.value = myS+"."+myMS;
 }
 
 // --------------- Judge --------------- //

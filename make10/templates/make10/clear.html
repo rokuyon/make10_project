@@ -1,6 +1,14 @@
 {% extends 'make10/base.html' %}
 {% block content %}
 
-クリアタイムは{{ clear_time }}です。
+<br>
+<h2>タイム登録</h2>
+<br>
+<form action="{% url 'resist' %}" method="POST">
+    名前: <input type="text" name="user_name">
+    タイム: <input type="text" name="clear_time" value="{{ clear_time }}" readonly>
+    <input type="submit" value="決定">
+    {% csrf_token %}
+</form>
 
 {% endblock %}
