@@ -1,14 +1,21 @@
 {% extends 'make10/base.html' %}
 {% block content %}
+<div class="game-container">
     <script type="text/javascript">
         window.onload = initGame
     </script>
     <br>
-    <form name="myForm">
-        経過時間:
-        <input class="stop-watch" type="text" size="28" name="myFormTime" id="timer">
-    </form>
+    <h1>
+        <form name="myForm">
+            経過時間<input class="stop-watch" type="text" size="28" name="myFormTime" id="timer">
+        </form>
+    </h1>
     <br>
+    <h1>
+        式:
+        <input class="input-formula" type="text" id="formula" name="formula">
+    </h1>
+
     <div id="figure">
         <input class="btn btn-secondary game-button" type="button" onclick="clickFigure(this)">
         <input class="btn btn-secondary game-button" type="button" onclick="clickFigure(this)">
@@ -20,24 +27,24 @@
         <input class="btn btn-secondary game-button" type="button" value="-" onclick="clickOperator(this)">
         <input class="btn btn-secondary game-button" type="button" value="×" onclick="clickOperator(this)">
         <input class="btn btn-secondary game-button" type="button" value="÷" onclick="clickOperator(this)">
+        <br>
         <input class="btn btn-secondary game-button" type="button" value="(" onclick="clickParenthesis(this)">
         <input class="btn btn-secondary game-button" type="button" value=")" onclick="clickParenthesis(this)">
         <input class="btn btn-danger game-button" type="button" value="削除" onclick="popFormula()">
+        <input class="btn btn-primary game-button" type="button" id="answer" disabled="true" value="決定" onClick="judge()">
     </div>
     
-    <input type="text" id="formula" name="formula">
-    <input class="btn btn-primary" type="button" id="answer" disabled="true" value="決定" onClick="judge()">
-
-
+    <br>
+    
     <div id="message">
     </div>
-    <div>
+    <h1>
         現在<span id="correctCount">0</span>問正解
-    </div>
+    </h1>
 
     <form action="{% url 'clear' %}" method="POST" id="clearTimeForm">
         {% csrf_token %}
         <input type="hidden" id="clearTimeInput" name="clearTime">
     </form>
-
+</div>
 {% endblock %}
