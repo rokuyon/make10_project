@@ -1,8 +1,13 @@
 {% extends 'make10/base.html' %}
 {% block content %}
-<br>
-<h1>Make10とは</h1>
-<p>与えられた4つの数字と足し算, 引き算, 掛け算, 割り算, カッコを使って、いち早く10を作るゲームです。</p>
-<br>
-<a href="{% url 'game' %}"><button class="btn btn-primary" type="button">ゲームスタート</button></a>
+<div class="container">
+  <br>
+  <h1>Make10とは</h1>
+  <br>
+  <p>与えられた4つの数字と足し算, 引き算, 掛け算, 割り算, カッコを使って、いち早く10を作るゲームです。</p>
+  <br>
+  <a href="{% url 'game' %}">
+      <button class="btn btn-primary start-button" type="button">ゲームスタート</button>
+  </a>
+</div>
 {% endblock %}
