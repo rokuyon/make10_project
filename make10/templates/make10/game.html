@@ -4,11 +4,11 @@
     <script type="text/javascript">
         window.onload = initGame
     </script>
-    <h1>
+    <h2>
         <form name="myForm">
             経過時間<input class="stop-watch" type="text" size="28" name="myFormTime" id="timer">
         </form>
-    </h1>
+    </h2>
     <br>
     <h1>
         式:
@@ -35,11 +35,11 @@
     
     <br>
     
-    <div id="message">
+    <div class="message" id="message">
     </div>
-    <h1>
+    <h2>
         現在<span id="correctCount">0</span>問正解
-    </h1>
+    </h2>
 
     <form action="{% url 'clear' %}" method="POST" id="clearTimeForm">
         {% csrf_token %}
