@@ -90,12 +90,23 @@ function judge() {
         correctCount = Number(correctCount) + 1;
         document.getElementById("correctCount").innerHTML = correctCount.toString();
 
-        if (correctCount >= 1) {
+        if (correctCount >= 11) {
             var clearTime = document.getElementById("timer").value
             $("#clearTimeInput").attr({
                 'value': clearTime
             });
             $("#clearTimeForm").submit();
+        } else {
+            numbers = [];
+            numbersList = getNumbers();
+            var figureButtonList = document.getElementById("figure").children;
+            for (var i=0; i<figureButtonList.length; i++) {
+                figureButtonList.item(i).value = "";
+                figureButtonList.item(i).value = numbersList[i];
+                numbers.push(numbersList[i]);
+            }
+            document.getElementById("formula").value = "";
+            formula = [];
         }
 
     } else {

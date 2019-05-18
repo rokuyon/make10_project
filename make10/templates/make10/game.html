@@ -4,9 +4,12 @@
     <script type="text/javascript">
         window.onload = initGame
     </script>
+    <h1>
+        第<span id="correctCount">1</span>問
+    </h1>
     <h2>
         <form name="myForm">
-            経過時間<input class="stop-watch" type="text" size="28" name="myFormTime" id="timer">
+            タイム: <input class="stop-watch" type="text" size="12" name="myFormTime" id="timer">
         </form>
     </h2>
     <br>
@@ -32,14 +35,9 @@
         <input class="btn btn-danger game-button" type="button" value="削除" onclick="popFormula()">
         <input class="btn btn-primary game-button" type="button" id="answer" disabled="true" value="決定" onClick="judge()">
     </div>
-    
     <br>
-    
     <div class="message" id="message">
     </div>
-    <h2>
-        現在<span id="correctCount">0</span>問正解
-    </h2>
 
     <form action="{% url 'clear' %}" method="POST" id="clearTimeForm">
         {% csrf_token %}
