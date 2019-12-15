@@ -39,12 +39,11 @@ function clickParenthesis(e){
     document.getElementById("formula").value = formulaToString();
 }
 
+// 数式から末尾の文字列を削除
 function popFormula(){
-    var rm = formula.pop(); // 数式から末尾の文字列を削除
-
-    // 数式から削除したものが数値であった場合
+    var rm = formula.pop(); 
     if(figures.includes(rm)){
-        numbers.push(rm);   // 使用できる数値として復活させる
+        numbers.push(rm);
         $("#answer").get(0).disabled = true;
     }
     document.getElementById("formula").value = formulaToString();
@@ -59,6 +58,7 @@ function formulaToString(){
 function initGame() {
     numbersList = getNumbers();
     var figureButtonList = document.getElementById("figure").children;
+    document.getElementById('statement').textContent = numbersList;
     for (var i=0; i<figureButtonList.length; i++) {
         figureButtonList.item(i).value = numbersList[i];
         numbers.push(numbersList[i]);
@@ -100,6 +100,7 @@ function judge() {
             numbers = [];
             numbersList = getNumbers();
             var figureButtonList = document.getElementById("figure").children;
+            document.getElementById('statement').value = numbersList;
             for (var i=0; i<figureButtonList.length; i++) {
                 figureButtonList.item(i).value = "";
                 figureButtonList.item(i).value = numbersList[i];

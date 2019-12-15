@@ -8,15 +8,12 @@
         第<span id="correctCount">1</span>問
     </h1>
     <h2>
-        <form name="myForm">
-            タイム: <input class="stop-watch" type="text" size="12" name="myFormTime" id="timer">
-        </form>
+        <span id="statement"></span>を用いて10を作れ!
     </h2>
     <br>
-    <h1>
-        式:
-        <input class="input-formula" type="text" id="formula" name="formula">
-    </h1>
+    <h2>
+        入力: <input class="input-formula" type="text" id="formula" name="formula">
+    </h2>
 
     <div id="figure">
         <input class="btn btn-secondary game-button" type="button" onclick="clickFigure(this)">
@@ -38,6 +35,12 @@
     <br>
     <div class="message" id="message">
     </div>
+
+    <h2>
+        <form name="myForm">
+            Time: <input class="stop-watch" type="text" size="12" name="myFormTime" id="timer">
+        </form>
+    </h2>
 
     <form action="{% url 'clear' %}" method="POST" id="clearTimeForm">
         {% csrf_token %}
