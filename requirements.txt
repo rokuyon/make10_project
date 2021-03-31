@@ -108,7 +108,7 @@ lief==0.9.0
 lightgbm==2.2.2
 llvmlite==0.26.0
 locket==0.2.0
-lxml==4.3.2
+lxml==4.6.3
 Mako==1.0.7
 Markdown==2.6.11
 MarkupSafe==1.1.1
